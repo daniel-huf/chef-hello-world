@@ -1,4 +1,4 @@
-# hello_world
+# chef-hello-world
 
 TODO: Enter the cookbook description here.
 
