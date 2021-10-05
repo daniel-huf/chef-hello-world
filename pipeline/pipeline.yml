@@ -20,7 +20,7 @@ stages:
       inputs:
         targetType: 'inline'
         workingDirectory: $(Build.SourcesDirectory)
-        script: 'cookstyle.bat .'
+        script: 'cookstyle ../'
       env:
         CHEF_LICENSE: accept
     # - task: PowerShell@2
