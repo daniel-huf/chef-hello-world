@@ -15,6 +15,14 @@ stages:
         script: '.{ iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -channel current -project chef-workstation'
       env:
         CHEF_LICENSE: accept
+    - task : PowerShell@2
+      displayName: 'Get current path'
+      inputs:
+        targetType: 'inline'
+        workingDirectory: $(Build.SourcesDirectory)
+        script: 'pwd'
+      env:
+        CHEF_LICENSE: accept
     - task: PowerShell@2
       displayName: 'Check cookbook with cookstyle'
       inputs:
