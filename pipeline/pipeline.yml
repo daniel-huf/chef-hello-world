@@ -23,12 +23,11 @@ stages:
         script: 'pwd'
       env:
         CHEF_LICENSE: accept
-    - task: PowerShell@2
+    - task: CmdLine@2
       displayName: 'Check cookbook with cookstyle'
       inputs:
-        targetType: 'inline'
         workingDirectory: $(Build.SourcesDirectory)
-        script: 'Cookstyle .'
+        script: cookstyle .
       env:
         CHEF_LICENSE: accept
     # - task: PowerShell@2
