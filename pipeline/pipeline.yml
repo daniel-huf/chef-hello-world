@@ -80,8 +80,10 @@ stages:
         CHEF_LICENSE: accept
     - task: PowerShell@2
       displayName: 'Check if HelloWorld.txt exists'
-      workingDirectory: $(Build.SourcesDirectory)
-      script: 'Test-Path C:\Temp\HelloWorld.txt'
+      inputs:
+        targetType: 'inline'
+        workingDirectory: $(Build.SourcesDirectory)
+        script: 'Test-Path C:\Temp\HelloWorld.txt'
     # - task: CmdLine@2
     #   displayName: 'Check cookbook with cookstyle'
     #   inputs:
