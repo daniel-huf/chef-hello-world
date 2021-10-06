@@ -8,19 +8,19 @@ stages:
     pool:
       vmImage: 'windows-latest'
     steps:
-    - task: PowerShell@2
-      displayName: 'Install Chef WS'
-      inputs:
-        targetType: 'inline'
-        script: '.{ iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -channel current -project chef-workstation'
-      env:
-        CHEF_LICENSE: accept
+    # - task: PowerShell@2
+    #   displayName: 'Install Chef WS'
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: '.{ iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -channel current -project chef-workstation'
+    #   env:
+    #     CHEF_LICENSE: accept
     - task : PowerShell@2
-      displayName: 'Print Sources Directory (write-out dir)'
+      displayName: 'Print Sources Directory (write-output dir)'
       inputs:
         targetType: 'inline'
         workingDirectory: $(Build.SourcesDirectory)
-        script: 'Write-Out $(Build.SourcesDirectory)'
+        script: 'Write-Output $(Build.SourcesDirectory)'
       env:
         CHEF_LICENSE: accept
     - task : PowerShell@2
