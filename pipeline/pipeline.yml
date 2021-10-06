@@ -16,13 +16,27 @@ stages:
       env:
         CHEF_LICENSE: accept
     - task : PowerShell@2
-      displayName: 'Get current path'
+      displayName: 'Print Sources Directory (write-out dir)'
+      inputs:
+        targetType: 'inline'
+        workingDirectory: $(Build.SourcesDirectory)
+        script: 'Write-Out $(Build.SourcesDirectory)'
+      env:
+        CHEF_LICENSE: accept
+    - task : PowerShell@2
+      displayName: 'Get sources dir path (pwd)'
       inputs:
         targetType: 'inline'
         workingDirectory: $(Build.SourcesDirectory)
         script: 'pwd'
       env:
         CHEF_LICENSE: accept
+    - task: PowerShell@2
+      displayName: 'Print System Default Working Dir pwd'
+      input:
+        targetType: 'inline'
+        workingDirectory: $(System.DefaultWorkingDirectory)
+        scipt: 'pwd'
     - task: CmdLine@2
       displayName: 'Check cookbook with cookstyle'
       inputs:
