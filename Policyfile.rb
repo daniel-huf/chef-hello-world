@@ -10,7 +10,7 @@ name 'hello_world'
 default_source :supermarket
 
 # run_list: chef-client will run these recipes in the order specified.
-run_list 'hello_world::run'
+run_list 'hello_world::default'
 
 # Specify a custom source for a single cookbook:
 cookbook 'hello_world', path: '.'

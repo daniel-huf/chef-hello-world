@@ -67,7 +67,8 @@ stages:
         workingDirectory: $(Build.SourcesDirectory)
         script: |
           New-Item -Type Directory -Path C:\Temp\chef-zero-repo
-          C:\opscode\chef-workstation\bin\chef export .\test-kunde-intune-config.lock.json C:\Temp\chef-zero-repo
+          C:\opscode\chef-workstation\bin\chef install .\Policyfile.rb
+          C:\opscode\chef-workstation\bin\chef export .\Policyfile.lock.json C:\Temp\chef-zero-repo
       env:
         CHEF_LICENSE: accept
     - task: PowerShell@2
@@ -84,6 +85,7 @@ stages:
         targetType: 'inline'
         workingDirectory: $(Build.SourcesDirectory)
         script: 'Test-Path C:\Temp\HelloWorld.txt'
+
     # - task: CmdLine@2
     #   displayName: 'Check cookbook with cookstyle'
     #   inputs:
