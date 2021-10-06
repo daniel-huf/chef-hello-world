@@ -78,6 +78,10 @@ stages:
         script: 'C:\opscode\chef-workstation\bin\chef-client -z'
       env:
         CHEF_LICENSE: accept
+    - task: PowerShell@2
+      displayName: 'Check if HelloWorld.txt exists'
+      workingDirectory: $(Build.SourcesDirectory)
+      script: 'Test-Path C:\Temp\HelloWorld.txt'
     # - task: CmdLine@2
     #   displayName: 'Check cookbook with cookstyle'
     #   inputs:
