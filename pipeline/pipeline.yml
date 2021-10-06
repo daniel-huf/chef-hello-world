@@ -46,22 +46,13 @@ stages:
     - task: PowerShell@2
       displayName: 'Check if C:\Temp\ dir exists'
       inputs:
+        targetType: 'filePath'
+        filePath: ./test-dir.ps1
+    - task: PowerShell@2
+      displayName: 'Check if test-dir still exists'
+      inputs: 
         targetType: 'inline'
-        workingDirectory: $(System.DefaultWorkingDirectory)
-        script: |
-          if (Test-Path -Path C:\) {
-            Write-Output "C:\ exists"
-          }
-          else {
-              Write-Output "C:\ doesn't exist"
-          }
-          if (Test-Path -Path C:\Temp\) {
-              Write-Output "C:\Temp exists"
-          }
-          else {
-              Write-Output "C:\Temp doesn't exist"
-          }
-          Write-Output "Temp path is: $env:TEMP"
+        script: 'Test-Path -Path C:\Temp\test-dir'
     # - task: CmdLine@2
     #   displayName: 'Check cookbook with cookstyle'
     #   inputs:
