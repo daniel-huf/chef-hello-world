@@ -47,7 +47,7 @@ stages:
       displayName: 'Check if C:\Temp\ dir exists'
       inputs:
         targetType: 'filePath'
-        filePath: ./test-dir.ps1
+        filePath: $(System.DefaultWorkingDirectory)\pipeline\test-dir.ps1
     - task: PowerShell@2
       displayName: 'Check if test-dir still exists'
       inputs: 
