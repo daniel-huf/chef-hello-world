@@ -8,13 +8,20 @@ stages:
     pool:
       vmImage: 'windows-latest'
     steps:
-    # - task: PowerShell@2
-    #   displayName: 'Install Chef WS'
-    #   inputs:
-    #     targetType: 'inline'
-    #     script: '.{ iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -channel current -project chef-workstation'
-    #   env:
-    #     CHEF_LICENSE: accept
+    - task: PowerShell@2
+      displayName: 'Install Chef WS'
+      inputs:
+        targetType: 'inline'
+        script: '.{ iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -channel current -project chef-workstation'
+      env:
+        CHEF_LICENSE: accept
+    - task: PowerShell@2
+      displayName: 'Setup Chef WS'
+      inputs:
+        targetType: 'filePath'
+        filePath: $(System.DefaultWorkingDirectory)\pipeline\setup_chef.ps1
+      env:
+        CHEF_LICENSE: accept
     - task : PowerShell@2
       displayName: 'Print Sources Directory (write-output dir)'
       inputs:
@@ -53,6 +60,24 @@ stages:
       inputs: 
         targetType: 'inline'
         script: 'Test-Path -Path C:\Temp\test-dir'
+    - task: PowerShell@2
+      displayName: 'Export local chef repo'
+      inputs:
+        targetType: 'inline'
+        workingDirectory: $(Build.SourcesDirectory)
+        script: |
+          New-Item -Type Directory -Path C:\Temp\chef-zero-repo
+          C:\opscode\chef-workstation\bin\chef export .\test-kunde-intune-config.lock.json C:\Temp\chef-zero-repo
+      env:
+        CHEF_LICENSE: accept
+    - task: PowerShell@2
+      displayName: 'Execute chef-zero'
+      inputs:
+        targetType: 'inline'
+        workingDirectory: 'C:\Temp\chef-zero-repo'
+        script: 'C:\opscode\chef-workstation\bin\chef-client -z'
+      env:
+        CHEF_LICENSE: accept
     # - task: CmdLine@2
     #   displayName: 'Check cookbook with cookstyle'
     #   inputs:
