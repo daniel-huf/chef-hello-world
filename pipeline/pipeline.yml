@@ -33,7 +33,7 @@ stages:
         CHEF_LICENSE: accept
     - task: PowerShell@2
       displayName: 'Print System Default Working Dir pwd'
-      input:
+      inputs:
         targetType: 'inline'
         workingDirectory: $(System.DefaultWorkingDirectory)
         scipt: 'pwd'
