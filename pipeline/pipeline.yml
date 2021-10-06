@@ -37,13 +37,19 @@ stages:
         targetType: 'inline'
         workingDirectory: $(System.DefaultWorkingDirectory)
         scipt: 'pwd'
-    - task: CmdLine@2
-      displayName: 'Check cookbook with cookstyle'
+    - task: PowerShell@2
+      displayName: 'Print System Default Working Dir variable'
       inputs:
-        workingDirectory: $(Build.SourcesDirectory)
-        script: cookstyle .
-      env:
-        CHEF_LICENSE: accept
+        targetType: 'inline'
+        workingDirectory: $(System.DefaultWorkingDirectory)
+        scipt: 'Write-Output $(System.DefaultWorkingDirectory)'
+    # - task: CmdLine@2
+    #   displayName: 'Check cookbook with cookstyle'
+    #   inputs:
+    #     workingDirectory: $(Build.SourcesDirectory)
+    #     script: cookstyle .
+    #   env:
+    #     CHEF_LICENSE: accept
     # - task: PowerShell@2
     #   displayName: 'Run chef localy'
     #   inputs:
