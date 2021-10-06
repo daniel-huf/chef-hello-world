@@ -7,7 +7,7 @@ if ($cExists) {
 else {
     Write-Output "C:\ doesn't exist"
 }
-if ($cTmpExists)) {
+if ($cTmpExists) {
     Write-Output "C:\Temp exists"
 }
 else {
