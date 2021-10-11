@@ -57,4 +57,4 @@ stages:
       inputs:
         targetType: 'inline'
         workingDirectory: $(Build.SourcesDirectory)
-        script: 'Test-Path $HOME\HelloWorld.txt'
+        script: 'Test-Path C:\Users\VssAdministrator\HelloWorld.txt'
