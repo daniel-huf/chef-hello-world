@@ -51,7 +51,7 @@ stages:
         workingDirectory: 'C:\Temp\chef-zero-repo'
         script: |
           Set-Location "C:\Temp\chef-zero-repo"
-          chef-client -z
+          C:\opscode\chef-workstation\bin\chef-client -z
       env:
         CHEF_LICENSE: accept
     - task: PowerShell@2
