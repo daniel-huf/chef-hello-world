@@ -13,7 +13,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          cd ~
+          cd $HOME
           pwd
       env:
         CHEF_LICENSE: accept
@@ -55,4 +55,4 @@ stages:
       inputs:
         targetType: 'inline'
         workingDirectory: $(Build.SourcesDirectory)
-        script: 'Test-Path ~\HelloWorld.txt'
+        script: 'Test-Path $HOME\HelloWorld.txt'
